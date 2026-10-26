@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Griechenland Juni 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one long reading column, each resort as its own chapter with a photo wall; comparison table up front. */
+:root{
+  --bg:#f6f4ee; --surface:#ffffff; --fg:#1d2430; --muted:#5c6577; --line:#dcd7cc;
+  --accent:#1f5f8b; --accent-ink:#ffffff; --sand:#eadfc9; --sea:#dfeaf1;
+  --ok:#2e7d4f; --warn:#b4572a;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme:light; /* deliberately single-theme: a bright, sunlit page in every viewer */
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-variation-settings:"opsz" 144}
+h2{font-size:clamp(1.6rem,4vw,2.3rem)}
+h3{font-size:1.15rem;margin-bottom:.4rem}
+p{margin:0 0 1rem;max-width:68ch}
+a{color:var(--accent)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+header.hero{padding-block:56px 32px;border-bottom:1px solid var(--line);display:grid;gap:14px}
+header.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.95rem}
+.facts span b{color:var(--fg);font-weight:600}
+
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:20px}
+nav.toc a{text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.92rem;color:var(--fg);background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);outline:none}
+
+section{padding-block:40px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.table-wrap{overflow-x:auto;margin-top:18px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.93rem;background:var(--surface)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+thead th{background:var(--sea);position:sticky;top:0}
+tbody th{width:150px;color:var(--muted);font-weight:600;white-space:nowrap}
+td.best{box-shadow:inset 3px 0 0 var(--ok)}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:600;letter-spacing:.03em}
+.pill.hi{background:var(--ok);color:#fff}.pill.mid{background:var(--sand);color:var(--fg)}.pill.lo{background:var(--line);color:var(--fg)}
+
+.resort-head{display:grid;grid-template-columns:1fr auto;gap:12px 32px;align-items:end;margin-bottom:16px}
+.resort-head .where{color:var(--muted);font-size:1rem;margin-top:6px}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;margin:18px 0 22px;padding:14px 16px;background:var(--surface);border:1px solid var(--line)}
+.keyfacts div{font-size:.92rem;min-width:0}
+.keyfacts div b{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px;margin-bottom:22px}
+.two ul{margin:0;padding-left:1.1rem}
+.two li{margin-bottom:.35rem}
+.pro h3::before{content:"+ ";color:var(--ok)}.con h3::before{content:"– ";color:var(--warn)}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.gallery figure{margin:0;position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--sea);cursor:zoom-in}
+.gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.gallery figure:hover img{transform:scale(1.03)}
+.gallery figcaption{position:absolute;inset:auto 0 0 0;padding:18px 10px 8px;font-size:.78rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.credit{font-size:.8rem;color:var(--muted);margin-top:10px}
+
+.verdict{background:var(--surface);border:1px solid var(--line);padding:22px 24px;margin-top:8px}
+.verdict ol{padding-left:1.2rem;margin:0}
+.verdict li{margin-bottom:.6rem}
+.note{font-size:.9rem;color:var(--muted)}
+ul.sources{font-size:.85rem;color:var(--muted);columns:2;column-gap:32px;padding-left:1.1rem}
+ul.sources li{break-inside:avoid;margin-bottom:.3rem}
+
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px);max-height:94vh}
+dialog.lb::backdrop{background:rgba(5,10,18,.9)}
+dialog.lb img{max-width:96vw;max-height:84vh;display:block;margin:0 auto}
+dialog.lb p{color:#fff;text-align:center;margin:10px 0 0;font-size:.95rem}
+dialog.lb button{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));font-size:1.4rem;line-height:1;background:#fff;color:#000;border:0;border-radius:999px;width:40px;height:40px;cursor:pointer}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .two{grid-template-columns:1fr}
+  .resort-head{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  ul.sources{columns:1}
+}
+@media (prefers-reduced-motion: reduce){.gallery img{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Familienurlaub · 1–2 Wochen · Juni 2027</span>
+  <h1>Griechenland statt Adria: vier Resorts im Vergleich</h1>
+  <p class="lead">Vier Anlagen, die beides können: Pool, Strand und Rundum-Betreuung für die Kinder (nächsten Sommer 6, 4 und 2) und gleichzeitig mehr Abenteuer als ein weiteres Campingdorf an der Adria. Alle vier sind per Flug ab Salzburg oder München in unter drei Stunden erreichbar.</p>
+  <div class="facts">
+    <span><b>Reisezeit:</b> Juni 2027 (vor Schulbeginn des Großen)</span>
+    <span><b>Dauer:</b> 7–14 Nächte</span>
+    <span><b>Kinder:</b> 6 · 4 · 2 Jahre</span>
+    <span><b>Stand:</b> Oktober 2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sprungmarken">
+  <a href="#vergleich">Vergleich</a>
+  <a href="#sani">Sani Club</a>
+  <a href="#olivia">Ikos Olivia</a>
+  <a href="#odisia">Ikos Odisia</a>
+  <a href="#westin">Westin Costa Navarino</a>
+  <a href="#fazit">Fazit</a>
+</nav>
+
+<section id="vergleich">
+  <span class="eyebrow">Auf einen Blick</span>
+  <h2>Der Vergleich</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>Sani Club</th><th>Ikos Olivia</th><th>Ikos Odisia</th><th>Westin Costa Navarino</th></tr></thead>
+    <tbody>
+      <tr><th>Lage</th><td>Halkidiki, Kassandra-Halbinsel</td><td>Halkidiki, Gerakini (Golf von Toroneos)</td><td>Korfu, Bucht von Dassia</td><td>Peloponnes, Messenien (Ionisches Meer)</td></tr>
+      <tr><th>Anreise</th><td>Flug Thessaloniki: MUC täglich, SZG ca. 3×/Woche · Transfer ~45–55 min</td><td>Flug Thessaloniki · Transfer ~45–60 min</td><td class="best">Direktflug Salzburg–Korfu (Sommer) · Transfer ~20 min</td><td>Flug Kalamata (saisonal) oder via Athen · Transfer ~40 min</td></tr>
+      <tr><th>Konzept</th><td>Resort-Stadt: 5 Hotels, Marina, 1.000 Acres Naturreservat, 7 km Strand · Halbpension mit Dine-around (26 Restaurants)</td><td>Kompaktes All-inclusive-Resort, flach, 22 Acres, 450 m Strand · 6 Restaurants, Dine-out in lokalen Tavernen</td><td>Neuestes Ikos (2023), 60 Acres Halbinsel, 10 Pools, 420 m Strand · 8 Restaurants, All-inclusive</td><td>Resort in Dünenlandschaft, 445 Zimmer · Halbpension/Frühstück, 20+ Restaurants in der Agora</td></tr>
+      <tr><th>Betreuung</th><td>Krippe ab 6 Mo (kostenpflichtig) · Kids-Club 4–12 gratis · Babewatch</td><td>Krippe 4 Mo–3 J. · Heroes-Club 4–12 gratis, 3 Sessions/Tag · Vorbuchung nötig</td><td class="best">Krippe 6 Mo–3 J. · Heroes-Club 4–11 · Fußball-Akademie ab 4 · laut Gästen bester Ikos-Kids-Club</td><td>Cocoon 4 Mo–3 J. · SandCastle 4–12 · Aquapark mit 6 Rutschen</td></tr>
+      <tr><th>Abenteuer</th><td><span class="pill hi">hoch</span> Segeln, Wassersport, Radwege, Kletterpark, Marina-Abende</td><td><span class="pill lo">niedrig</span> Fly &amp; Flop; Ausflüge mit inkludiertem Mini für einen Tag</td><td><span class="pill mid">mittel</span> Korfu-Altstadt (UNESCO), Bootstouren, Inselrundfahrt im Mini</td><td class="best"><span class="pill hi">sehr hoch</span> Voidokilia-Bucht, Burg Pylos, Kajak, Reiten, Klettern, Olivenhaine</td></tr>
+      <tr><th>Entspannung</th><td><span class="pill hi">hoch</span> Spa, Michelin-Küche, große Auswahl</td><td class="best"><span class="pill hi">sehr hoch</span> Null Organisationsaufwand</td><td><span class="pill hi">sehr hoch</span> wie Olivia, plus neuere Anlage</td><td><span class="pill mid">mittel</span> weniger Luxus-Bubble, mehr Natur</td></tr>
+      <tr><th>Unterkunftstipp</th><td>Family Suite Grand Balcony oder Two Bedroom Bungalow Suite</td><td>Deluxe Two Bedroom Bungalow Suite Beachfront</td><td>One Bedroom Bungalow Suite Balcony (neu 2026) oder Deluxe Two Bedroom</td><td>Family Suite (70–80 m², 2 Bäder) oder Infinity Suite</td></tr>
+      <tr><th>Richtpreis</th><td>15–25 k€ für 2 Wochen inkl. Flug</td><td>15–25 k€ (Juni ab ca. 2.200 £/Person/Woche inkl. Flug)</td><td>15–25 k€ (ab 346 €/Nacht Doppelzimmer AI)</td><td class="best">10–15 k€ (Juni ab ca. 1.330 £/Person/Woche ohne Flug)</td></tr>
+      <tr><th>Haken</th><td>Richtige Hotelwahl entscheidend (Dunes/Asterias sind für 12+)</td><td>Garden-Village weit vom Strand; Kids-Club in Spitzenzeiten überlaufen</td><td>Keine Adults-only-Zonen; Garden-Zimmer weit vom Strand</td><td>Abgelegen, Anreise komplexer; Flug nach Kalamata prüfen</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Grün markiert: die jeweils stärkste Anlage in dieser Zeile. Preise sind Größenordnungen auf Basis aktueller Veranstalterangebote (Oktober 2026), nicht Angebote.</p>
+</section>
+
+<section id="sani">
+  <div class="resort-head">
+    <div><span class="eyebrow">Option 1 · Halkidiki</span><h2>Sani Club</h2><div class="where">Sani Resort, Kassandra · 253 Zimmer · Teil einer Resort-Stadt mit fünf Hotels</div></div>
+  </div>
+  <p>Der Sani Club liegt am ruhigen Ende des Sani Resorts: niedrige weiße Bungalow-Zeilen in Olivenhainen, direkt an einem flach abfallenden Sandstrand mit Blick auf den Olymp. Das Resort selbst ist eine kleine Stadt mit Marina, Geschäften, Theater, Sportzentrum und einem Kletter- und Abenteuerpark. Wer übernachtet, isst mit dem Dine-around-Programm in 26 Restaurants quer durchs Resort, der Shuttle fährt alle paar Minuten.</p>
+  <p>Für drei Kinder ist das die Mischung aus Dorf und Großanlage: viel Platz, Abenteuerangebote für die Buben, ein flaches Meer für die Kleine, dazu eigene Krippe und Kids-Club direkt im Hotel. Die 2026 renovierten Family Suites haben zwei verbundene Junior Suites mit großem Balkon.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Thessaloniki (SKG), ab MUC täglich, ab SZG mit Eurowings ca. 3×/Woche</div>
+    <div><b>Transfer</b>~80 km, 45–55 min</div>
+    <div><b>Verpflegung</b>Halbpension mit Dine-around in 26 Restaurants</div>
+    <div><b>Strand</b>Direkt, flach, Blue Flag, 7 km Küste im Resort</div>
+    <div><b>Kinder</b>Melissa-Krippe ab 6 Monaten, Kids-Club 4–12 inkludiert</div>
+    <div><b>Saison</b>Ende April bis Ende Oktober</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Größte Auswahl an Aktivitäten: Segeln, Wassersport, Radwege, Kletterpark, Marina</li><li>Flaches Meer und Village-Charakter, ideal mit Zweijähriger</li><li>Hervorragende Küche mit Dine-around</li><li>Bekannter Standard, seit Jahren als bestes Familienresort ausgezeichnet</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Krippe und À-la-carte vorab buchen, sonst Wartelisten</li><li>Halbpension statt All-inclusive, Nebenkosten summieren sich</li><li>Großanlage: viel Betrieb an der Marina im Hochsommer</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Sani Club">
+    <figure><img src="images/sani-01.jpg" alt="Luftaufnahme Sani Club" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Luftaufnahme: Sani Club und Bucht</figcaption></figure>
+    <figure><img src="images/sani-02.jpg" alt="Family Suite Schlafzimmer mit Meerblick" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Family Suite Grand Balcony, Schlafzimmer</figcaption></figure>
+    <figure><img src="images/sani-03.jpg" alt="Family Suite Wohnbereich und Terrasse" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Family Suite, Wohnbereich und Terrasse</figcaption></figure>
+    <figure><img src="images/sani-04.jpg" alt="Two Bedroom Bungalow Suite mit Privatpool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Two Bedroom Bungalow Suite mit Privatpool</figcaption></figure>
+    <figure><img src="images/sani-05.jpg" alt="Privater Infinity-Pool mit Meerblick" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Privatpool, Blick auf die Ägäis</figcaption></figure>
+    <figure><img src="images/sani-06.jpg" alt="Two Bedroom Bungalow Suite Wohnzimmer" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Two Bedroom Bungalow Suite, Privatgarten</figcaption></figure>
+    <figure><img src="images/sani-07.jpg" alt="Lounge Bar am Infinity Pool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Lounge Bar am Infinity Pool</figcaption></figure>
+    <figure><img src="images/sani-08.jpg" alt="Lounge Bar bei Sonnenuntergang" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Sonnenuntergang an der Lounge Bar</figcaption></figure>
+    <figure><img src="images/sani-09.jpg" alt="Familie beim Essen in der Ouzerie" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Familienessen in der Ouzerie</figcaption></figure>
+    <figure><img src="images/sani-10.jpg" alt="Abendessen in der Ouzerie am Meer" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Ouzerie, Abendessen am Wasser</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Sani Resort via Kenwood Travel</p>
+</section>
+
+<section id="olivia">
+  <div class="resort-head">
+    <div><span class="eyebrow">Option 2 · Halkidiki</span><h2>Ikos Olivia</h2><div class="where">Gerakini, Golf von Toroneos · 291 Zimmer · All-inclusive, 2025 komplett neu gestaltet</div></div>
+  </div>
+  <p>Ikos Olivia ist das Gegenmodell zur Resort-Stadt: eine kompakte, komplett flache Anlage in Pinien und alten Olivenbäumen, in der man nach einem Tag alles kennt. Das Ikos-Modell heißt „Infinite Lifestyle“: sechs À-la-carte-Restaurants mit Menüs von Sternköchen, Minibar täglich aufgefüllt, 24-h-Roomservice, Spa, Wassersport, alles im Preis. Dazu Dine-out in ausgewählten Tavernen der Umgebung und ein elektrischer Mini für einen Tag, um Halkidiki selbst zu erkunden.</p>
+  <p>Für Eltern mit drei kleinen Kindern ist das die Anlage mit dem geringsten Organisationsaufwand. Die Zwei-Schlafzimmer-Bungalows direkt am Strand (90 m², zwei Bäder) sind für fünf Personen gemacht; Deluxe-Gäste bekommen eigenen Pool- und Strandbereich mit mehr Abstand zwischen den Liegen.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Thessaloniki (SKG)</div>
+    <div><b>Transfer</b>~70 km, 45–60 min, inkludiert</div>
+    <div><b>Verpflegung</b>All-inclusive deluxe inkl. Dine-out und Mini für einen Tag</div>
+    <div><b>Strand</b>450 m Privatstrand, Blue Flag, 4 Pools</div>
+    <div><b>Kinder</b>Krippe 4 Mo–3 J., Heroes-Club 4–12 (10–13, 13–15, 15–18 Uhr), Strand-Kinderbetreuung</div>
+    <div><b>Juni-Preis</b>ab ca. 2.200 £ pro Person und Woche inkl. Flug ab UK</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Alles inklusive, keine Rechnung am Ende</li><li>Flach, kurze Wege, Strand und Pools nah beieinander</li><li>Komplett renoviert, ruhige Lage</li><li>Kids-Club nach UK-Ofsted-Standard, Betreuung ab 4 Monaten</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Wenig eigener Abenteuer-Faktor, Ausflüge muss man selbst organisieren</li><li>Kids-Club-Sessions vorab buchen, sonst Warteliste</li><li>Garden-Village-Zimmer liegen weit vom Strand</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Ikos Olivia">
+    <figure><img src="images/olivia-01.jpg" alt="Luftaufnahme Ikos Olivia" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Luftaufnahme: Strand, Pools und Olivenhaine</figcaption></figure>
+    <figure><img src="images/olivia-02.jpg" alt="Restaurant Fresco" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Fresco, italienisches Restaurant am Strand</figcaption></figure>
+    <figure><img src="images/olivia-03.jpg" alt="Restaurant Ouzo" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Ouzo, griechische Küche</figcaption></figure>
+    <figure><img src="images/olivia-04.jpg" alt="Deluxe One Bedroom Bungalow Suite mit Privatgarten" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Bungalow Suite mit Privatgarten</figcaption></figure>
+    <figure><img src="images/olivia-05.jpg" alt="Deluxe Bungalow Suite Beachfront" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Bungalow Suite, direkt am Strand</figcaption></figure>
+    <figure><img src="images/olivia-06.jpg" alt="Deluxe Two Bedroom Bungalow Suite Beachfront" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Two Bedroom Bungalow Suite Beachfront (Familientipp)</figcaption></figure>
+    <figure><img src="images/olivia-07.jpg" alt="Deluxe Bungalow Suite mit Privatpool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Bungalow Suite mit Privatpool</figcaption></figure>
+    <figure><img src="images/olivia-08.jpg" alt="Deluxe Bungalow Suite Poolblick" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Bungalow Suite, Poolblick</figcaption></figure>
+    <figure><img src="images/olivia-09.jpg" alt="One Bedroom Bungalow Suite" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>One Bedroom Bungalow Suite, Gartenblick</figcaption></figure>
+    <figure><img src="images/olivia-10.jpg" alt="Familie beim Mittagessen in einem Ikos Resort" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Familien-Dining bei Ikos (Markenbild)</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Ikos Resorts</p>
+</section>
+
+<section id="odisia">
+  <div class="resort-head">
+    <div><span class="eyebrow">Option 3 · Korfu</span><h2>Ikos Odisia</h2><div class="where">Bucht von Dassia, Ostküste · 390 Zimmer · eröffnet 2023, All-inclusive</div></div>
+  </div>
+  <p>Ikos Odisia ist das neueste Haus der Gruppe und liegt leicht erhöht auf einer bewaldeten Halbinsel gegenüber dem Schwesterresort Ikos Dassia. 60 Acres Grün, 10 beheizte Pools mit eigenen Splash-Parks für Kinder, 420 m Strand und acht Restaurants, darunter Peruanisch und Spanisch. Das Ikos-Paket ist dasselbe wie in Olivia: alles inklusive, Dine-out, Mini für einen Tag, Culture Pass für Museen.</p>
+  <p>Der eigentliche Vorteil für eine Familie aus Oberösterreich: Korfu wird im Sommer direkt ab Salzburg angeflogen, der Transfer dauert 20 Minuten. Mit drei Kindern ist das der Unterschied zwischen entspannt und zäh. Die Altstadt von Korfu (UNESCO) ist 25 Minuten entfernt. Neu für 2026 sind Bungalow-Suiten mit seitlichem Meerblick und Drei- bis Vier-Schlafzimmer-Villen mit Privatpool.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Korfu (CFU), Direktflug ab Salzburg im Sommerflugplan</div>
+    <div><b>Transfer</b>~15 km, 20 min</div>
+    <div><b>Verpflegung</b>All-inclusive deluxe, 8 Restaurants, Dine-out</div>
+    <div><b>Strand/Pools</b>420 m Strand, 10 beheizte Pools, Splash-Parks</div>
+    <div><b>Kinder</b>Krippe 6 Mo–3 J., Heroes-Club 4–11, Fußball-Akademie ab 4</div>
+    <div><b>Preis</b>Doppelzimmer AI ab 346 €/Nacht; Family Room ab ca. 1.000 €/Nacht</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Kürzeste Anreise aller vier: Salzburg direkt, 20 min Transfer</li><li>Neueste, modernste Anlage, Kids-Club laut Gästen der beste bei Ikos</li><li>Korfu ist im Juni grün und 26–28 °C, nicht so heiß wie Halkidiki im Juli</li><li>Altstadt und Inselrundfahrt als echte Ausflugsziele</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Keine Adults-only-Bereiche</li><li>Hanglage: Garden-Zimmer weit vom Strand, Beachfront buchen</li><li>Teurer als Olivia bei gleichem Konzept</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Ikos Odisia">
+    <figure><img src="images/odisia-01.jpg" alt="Blick über den Strand von Ikos Odisia" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Bucht von Dassia, Blick vom Resort</figcaption></figure>
+    <figure><img src="images/odisia-02.jpg" alt="Ikos Odisia Anlage" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Anlage auf der Halbinsel</figcaption></figure>
+    <figure><img src="images/odisia-03.jpg" alt="Ikos Odisia Pool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool und Gärten</figcaption></figure>
+    <figure><img src="images/odisia-04.jpg" alt="One Bedroom Bungalow Suite mit seitlichem Meerblick" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>One Bedroom Bungalow Suite, seitlicher Meerblick (neu 2026)</figcaption></figure>
+    <figure><img src="images/odisia-05.jpg" alt="Deluxe Three Bedroom Villa mit Privatpool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Three Bedroom Villa mit Privatpool (neu 2026)</figcaption></figure>
+    <figure><img src="images/odisia-06.jpg" alt="Deluxe Four Bedroom Villa mit Privatpool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Four Bedroom Villa, Meerblick</figcaption></figure>
+    <figure><img src="images/odisia-07.jpg" alt="Restaurant Ouzo im Ikos Odisia" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Ouzo, griechisches Restaurant am Strand</figcaption></figure>
+    <figure><img src="images/odisia-08.jpg" alt="Ikos Odisia Korfu" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Terrassen mit Blick aufs Ionische Meer</figcaption></figure>
+    <figure><img src="images/odisia-09.jpg" alt="Familie am Strand" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Familie am Strand (Markenbild Ikos)</figcaption></figure>
+    <figure><img src="images/odisia-10.jpg" alt="Küste von Korfu" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Korfu, Küste vor der Haustür</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Ikos Resorts, Winged Boots, in.gr, Yorkshire Evening Post</p>
+</section>
+
+<section id="westin">
+  <div class="resort-head">
+    <div><span class="eyebrow">Option 4 · Peloponnes</span><h2>The Westin Resort, Costa Navarino</h2><div class="where">Navarino Dunes, Messenien · 445 Zimmer · Familienhotel der Costa-Navarino-Destination</div></div>
+  </div>
+  <p>Costa Navarino ist das abenteuerlichste der vier Ziele: ein Resort in einer Dünenlandschaft am Ionischen Meer, drumherum Olivenhaine, die Lagune von Gialova mit Flamingos, die sichelförmige Voidokilia-Bucht, Burgen in Pylos und Methoni und der Palast des Nestor. Das Westin ist das Familienhaus der Anlage: Aquapark mit sechs Rutschen, Cocoon für die Kleinsten, SandCastle für 4- bis 12-Jährige, Bowling, Kletterwand, Reiten, Kajak und ein Tennis-Center.</p>
+  <p>Die Zimmer sind messenischen Herrenhäusern nachempfunden, 2025 renoviert; Family Suites mit 70–80 m² und zwei Bädern, viele Zimmer mit eigenem Infinity-Pool. Über 20 Restaurants in der „Agora“ von Souvlakerie bis Japanisch. Kinder bis 4 wohnen kostenlos im Elternbett. Die Anreise ist der Haken: Kalamata hat nur wenige Flüge am Tag, meist saisonale Charter oder Umsteigen in Athen.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Kalamata (KLX) saisonal, sonst Athen + 3 h Fahrt</div>
+    <div><b>Transfer</b>~35–50 km, 40–50 min</div>
+    <div><b>Verpflegung</b>Frühstück oder Halbpension, 20+ Restaurants</div>
+    <div><b>Strand/Pools</b>1 km Dunes Beach, Lagoon Pool, Aquapark mit 6 Rutschen</div>
+    <div><b>Kinder</b>Cocoon 4 Mo–3 J., SandCastle 4–12, Jugendclub, Kinder bis 4 gratis</div>
+    <div><b>Juni-Preis</b>ab ca. 1.330 £ pro Person und Woche ohne Flug (Deluxe Garden View)</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Echtes Griechenland statt Resort-Bubble: Voidokilia, Pylos, Lagune, Olivenhaine</li><li>Aquapark mit Rutschen, für 4 und 6 ein Volltreffer</li><li>Größtes Aktivitätenangebot: Reiten, Kajak, Klettern, Tauchen, Rad</li><li>Deutlich günstiger als Sani und Ikos</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Anreise: Kalamata-Flüge ab München/Salzburg prüfen, sonst lange Fahrt</li><li>Nicht all-inclusive, Nebenkosten höher</li><li>Weniger kompakt, Resort ist weitläufig</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Westin Costa Navarino">
+    <figure><img src="images/westin-01.jpg" alt="The Westin Resort Costa Navarino" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Das Resort in den Navarino Dunes</figcaption></figure>
+    <figure><img src="images/westin-02.jpg" alt="Westin Pool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Westin Pool</figcaption></figure>
+    <figure><img src="images/westin-03.jpg" alt="Family Suite" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Family Suite, 70–80 m²</figcaption></figure>
+    <figure><img src="images/westin-04.jpg" alt="Infinity Room mit eigenem Pool" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Infinity Room mit eigenem Pool</figcaption></figure>
+    <figure><img src="images/westin-05.jpg" alt="Premium Infinity Room mit Meerblick" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Premium Infinity Room, Meerblick</figcaption></figure>
+    <figure><img src="images/westin-06.jpg" alt="Premium Infinity Suite" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Premium Infinity Suite</figcaption></figure>
+    <figure><img src="images/westin-07.jpg" alt="Restaurant Da Luigi" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Da Luigi, Italiener mit Open-Air-Kino</figcaption></figure>
+    <figure><img src="images/westin-08.jpg" alt="Restaurant Barbouni am Strand" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Barbouni, Fischrestaurant am Strand</figcaption></figure>
+    <figure><img src="images/westin-09.jpg" alt="Souvlakerie" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Souvlakerie in der Agora</figcaption></figure>
+    <figure><img src="images/westin-10.jpg" alt="Restaurant Morias" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Morias, Buffetrestaurant</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Marriott / Costa Navarino via Kenwood Travel</p>
+</section>
+
+<section id="fazit">
+  <span class="eyebrow">Einordnung</span>
+  <h2>Fazit</h2>
+  <div class="verdict">
+    <ol>
+      <li><b>Sani Club</b> ist der beste Kompromiss aus Komfort und Abenteuer: Dorfcharakter am flachen Strand, dazu Segeln, Wassersport, Kletterpark und 26 Restaurants. Erste Wahl, wenn das Resort selbst genug Programm bieten soll.</li>
+      <li><b>Ikos Odisia</b> gewinnt bei der Anreise: Salzburg direkt, 20 Minuten Transfer, modernste Anlage. Erste Wahl, wenn der Fahraufwand mit drei Kindern das Kriterium ist.</li>
+      <li><b>Ikos Olivia</b> ist die entspannteste Variante bei etwas niedrigerem Preis, bietet aber von sich aus am wenigsten Abenteuer.</li>
+      <li><b>Westin Costa Navarino</b> ist das abenteuerlichste und günstigste Ziel, steht und fällt aber mit einem brauchbaren Flug nach Kalamata.</li>
+    </ol>
+  </div>
+  <p class="note" style="margin-top:18px">Alle vier Anlagen sind in den Juni-Wochen 2027 für Familien-Suiten erfahrungsgemäß bis Jänner ausgebucht. Frühbucherrabatte (Ikos bis 2. November, Sani bis ca. Jänner/Februar) laufen jetzt. Ein Zwei-Wochen-Aufenthalt für 2 Erwachsene und 3 Kinder liegt bei Sani und Ikos inkl. Flug grob bei 15–25 k€, beim Westin bei 10–15 k€.</p>
+  <h3 style="margin-top:28px">Quellen</h3>
+  <ul class="sources">
+    <li><a href="https://www.sani-resort.com">Sani Resort</a> / Kenwood Travel, Scott Dunn</li>
+    <li><a href="https://ikosresorts.com/resorts/ikos-olivia/">Ikos Olivia</a>, Destination2 (Juni-2027-Preise), Tropical Sky</li>
+    <li><a href="https://ikosresorts.com/resorts/ikos-odisia/">Ikos Odisia</a>, Destinology, Winged Boots, Travel Weekly</li>
+    <li><a href="https://www.marriott.com/de/hotels/klxwi-the-westin-resort-costa-navarino/">The Westin Resort, Costa Navarino</a>, Elegant Resorts, Kenwood Travel</li>
+    <li>Flüge: Eurowings (SZG–SKG), airBaltic (MUC–SKG), Salzburg Airport Sommerflugplan</li>
+  </ul>
+</section>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Foto in groß">
+  <button type="button" id="lbClose" aria-label="Schließen">×</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</dialog>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  if(!lb||!lb.showModal) return;
+  document.querySelectorAll('.gallery figure').forEach(function(f){
+    f.addEventListener('click',function(){
+      var i=f.querySelector('img'),c=f.querySelector('figcaption');
+      img.src=i.currentSrc||i.src; img.alt=i.alt;
+      cap.textContent=(f.closest('.gallery').dataset.resort||'')+' · '+(c?c.textContent:'');
+      lb.showModal();
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+})();
+</script>
+
+</body>
+</html>
