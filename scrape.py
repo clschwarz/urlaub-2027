@@ -15,9 +15,8 @@ TARGETS = {
         "https://www.grecotel.com/resort-costabotanica/",
         "https://www.tropicalsky.co.uk/europe-holidays/greece/corfu/grecotel-lux-me-costa-botanica",
     ],
-    "bluebay": [
-        "https://jet2holidays.com/greece/rhodes/ialyssos/blue-bay-resort",
-        "https://www.easyjet.com/en/holidays/greece/rhodes/ialyssos/blue-bay-resort",
+    "marbella": [
+        "https://www.marbella.gr/",
     ],
     "kids": [
         "https://ikosresorts.com/resorts/ikos-olivia/kids/",
@@ -38,8 +37,28 @@ def get(url, binary=False):
         return r.read() if binary else r.read().decode("utf-8", "replace")
 
 os.makedirs("images", exist_ok=True)
+LINK_RE = re.compile(r'href="(https?://[^"#?]+/?)"')
+def expand(pages):
+    out, seen = [], set()
+    for p in pages:
+        if p not in seen: seen.add(p); out.append(p)
+    for p in list(pages):
+        try: doc = get(p)
+        except Exception: continue
+        host = urllib.parse.urlparse(p).netloc
+        for l in LINK_RE.findall(doc):
+            if urllib.parse.urlparse(l).netloc == host and l not in seen and not re.search(r'wp-|/feed|\.(jpg|png|pdf|xml)$|privacy|cookie|terms|login|cart|blog|news', l, re.I):
+                seen.add(l); out.append(l)
+            if len(out) >= 25: break
+    return out
+def basekey(u):
+    u = u.split('?')[0]
+    u = re.sub(r'-\d{2,4}x\d{2,4}(?=\.\w+$)', '', u)
+    return u.rsplit('/',1)[-1].lower()
 for prefix, pages in TARGETS.items():
     seen, cands = set(), []
+    pages = expand(pages)
+    print(prefix, "pages", len(pages))
     for p in pages:
         try:
             doc = html.unescape(get(p))
@@ -47,19 +66,20 @@ for prefix, pages in TARGETS.items():
             print(prefix, "page failed", p, e); continue
         for m in IMG_RE.findall(doc):
             u = m.strip()
-            if SKIP.search(u) or u in seen: continue
-            seen.add(u); cands.append(u)
+            k = basekey(u)
+            if SKIP.search(u) or k in seen or re.search(r'istock|shutterstock|getty', u, re.I): continue
+            seen.add(k); cands.append(u)
     print(prefix, "candidates", len(cands))
     keep, n = [], 0
     for u in cands:
-        if n >= 10: break
+        if n >= 14: break
         try:
             data = get(u, binary=True)
             im = Image.open(io.BytesIO(data)); im.load()
         except Exception as e:
             continue
         w, h = im.size
-        if w < 700 or h < 400 or w / h > 3.5 or h / w > 1.6: continue
+        if w < 900 or h < 500 or w / h > 3.0 or h / w > 1.3: continue
         n += 1
         out = f"images/{prefix}-{n:02d}.jpg"
         im = im.convert("RGB"); im.thumbnail((1400, 1400))
