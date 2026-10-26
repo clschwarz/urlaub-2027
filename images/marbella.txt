@@ -1,0 +1,14 @@
+images/marbella-01.jpg 2560x1705 https://www.marbella.gr/app/uploads/2024/05/Elix_Water-Sports-2-scaled.jpg
+images/marbella-02.jpg 1024x683 https://www.marbella.gr/app/uploads/2023/03/2022_10_MarBella_Scout_0953_v1-1024x683.jpg
+images/marbella-03.jpg 1024x575 https://www.marbella.gr/app/uploads/2023/03/2022_10-Marbella-Elix_Day-Three_0939_v1-1024x575.jpg
+images/marbella-04.jpg 1024x575 https://www.marbella.gr/app/uploads/2023/06/2022_10-Marbella_Day-01-0652_v1-1024x575.jpg
+images/marbella-05.jpg 1024x683 https://www.marbella.gr/app/uploads/2023/03/2022_10_MarBella_Day-Two_1736_v1-1024x683.jpg
+images/marbella-06.jpg 1024x683 https://www.marbella.gr/app/uploads/2023/03/2022_10-Marbella-Elix_Day-Three_0064_v1-1024x683.jpg
+images/marbella-07.jpg 1709x1281 https://www.marbella.gr/app/uploads/2023/06/Marbella23-0237.jpg
+images/marbella-08.jpg 1300x700 https://www.marbella.gr/app/uploads/2023/05/marbellacorfu21-0001-1300x700-1.jpg
+images/marbella-09.jpg 2155x1860 https://www.marbella.gr/app/uploads/2025/08/1-Avali_Panorama-scaled-e1755168630566.jpg
+images/marbella-10.jpg 1300x700 https://www.marbella.gr/app/uploads/2023/05/marbellaelix20-0167-copy-1300x700-1.jpg
+images/marbella-11.jpg 2560x1708 https://www.marbella.gr/app/uploads/2026/09/Cayo2024-14593-scaled.jpg
+images/marbella-12.jpg 2560x1290 https://www.marbella.gr/app/uploads/2024/08/MarBella_Aerial14-1-1-scaled.jpg
+images/marbella-13.jpg 1920x1078 https://www.marbella.gr/app/uploads/2023/06/2022_10-Marbella_Day-01-3074_v1-resized.jpg
+images/marbella-14.jpg 1920x1281 https://www.marbella.gr/app/uploads/2023/08/Marbella23-0972.jpg
