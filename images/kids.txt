@@ -1,0 +1,10 @@
+images/kids-01.jpg 1400x2100 https://ikosresorts.com/wp-content/uploads/2022/10/Ikos-Resorts_Family-playing-on-the-beach_1400x2100.jpg
+images/kids-02.jpg 1024x683 https://ikosresorts.com/wp-content/uploads/2022/10/Ikos-Resorts-_-Kid-having-magic-moments-by-the-poolIKOS_Porto_Petro_Magic_Pool_Mother_Boy-5480_2880x1920-1024x683.jpg
+images/kids-03.jpg 1024x682 https://ikosresorts.com/wp-content/uploads/2022/10/iStock-1413987715-2000-1024x682.png
+images/kids-04.jpg 1024x719 https://ikosresorts.com/wp-content/uploads/2022/10/iStock-1287445152-2000-1024x719.png
+images/kids-05.jpg 1024x683 https://ikosresorts.com/wp-content/uploads/2022/10/iStock-597952626-2000-1024x683.png
+images/kids-06.jpg 1024x663 https://ikosresorts.com/wp-content/uploads/2022/11/ikos-kids-hat-1-1024x663.jpg
+images/kids-07.jpg 2560x1707 https://ikosresorts.com/wp-content/uploads/2022/10/Ikos-Aria-_-Smiles_2880x1920-1-scaled.jpg
+images/kids-08.jpg 2000x1178 https://ikosresorts.com/wp-content/uploads/2022/10/iStock-859254392-2000.png
+images/kids-09.jpg 2560x1707 https://ikosresorts.com/wp-content/uploads/2022/10/Ikos-Dassia-Kids-Swing_2880x1920-1-scaled.jpg
+images/kids-10.jpg 2560x1708 https://ikosresorts.com/wp-content/uploads/2022/10/Kids-Activities-Tennis-Class-2_2880x1921-1-scaled.jpg
