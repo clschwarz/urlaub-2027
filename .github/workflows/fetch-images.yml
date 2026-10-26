@@ -26,6 +26,10 @@ jobs:
             fi
           done < urls.txt
           ls -la images | head -50
+      - name: Scrape additional resort galleries
+        run: |
+          pip install -q pillow
+          python3 scrape.py || true
       - name: Commit photos
         run: |
           git config user.name "github-actions"
