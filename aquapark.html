@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aquapark-Resorts Juni 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: same reading column as the Hauptseite, comparison first, then one chapter per resort with photo wall. */
+:root{
+  --bg:#f6f4ee; --surface:#ffffff; --fg:#1d2430; --muted:#5c6577; --line:#dcd7cc;
+  --accent:#1f5f8b; --accent-ink:#ffffff; --sand:#eadfc9; --sea:#dfeaf1;
+  --ok:#2e7d4f; --warn:#b4572a;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-variation-settings:"opsz" 144}
+h2{font-size:clamp(1.6rem,4vw,2.3rem)}
+h3{font-size:1.15rem;margin-bottom:.4rem}
+p{margin:0 0 1rem;max-width:68ch}
+a{color:var(--accent)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.hero{padding-block:56px 32px;border-bottom:1px solid var(--line);display:grid;gap:14px}
+header.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.95rem}
+.facts span b{color:var(--fg);font-weight:600}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:20px}
+nav.toc a{text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.92rem;color:var(--fg);background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);outline:none}
+section{padding-block:40px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.table-wrap{overflow-x:auto;margin-top:18px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.93rem;background:var(--surface)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+thead th{background:var(--sea);position:sticky;top:0}
+tbody th{width:150px;color:var(--muted);font-weight:600;white-space:nowrap}
+td.best{box-shadow:inset 3px 0 0 var(--ok)}
+td.ref{color:var(--muted)}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:600;letter-spacing:.03em}
+.pill.hi{background:var(--ok);color:#fff}.pill.mid{background:var(--sand);color:var(--fg)}.pill.lo{background:var(--line);color:var(--fg)}
+.resort-head{margin-bottom:16px}
+.resort-head .where{color:var(--muted);font-size:1rem;margin-top:6px}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;margin:18px 0 22px;padding:14px 16px;background:var(--surface);border:1px solid var(--line)}
+.keyfacts div{font-size:.92rem;min-width:0}
+.keyfacts div b{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px;margin-bottom:22px}
+.two ul{margin:0;padding-left:1.1rem}
+.two li{margin-bottom:.35rem}
+.pro h3::before{content:"+ ";color:var(--ok)}.con h3::before{content:"– ";color:var(--warn)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.gallery figure{margin:0;position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--sea);cursor:zoom-in}
+.gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.gallery figure:hover img{transform:scale(1.03)}
+.gallery figcaption{position:absolute;inset:auto 0 0 0;padding:18px 10px 8px;font-size:.78rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.gallery.small figure:first-child{grid-column:auto;grid-row:auto}
+.credit{font-size:.8rem;color:var(--muted);margin-top:10px}
+.verdict{background:var(--surface);border:1px solid var(--line);padding:22px 24px;margin-top:8px}
+.verdict ol{padding-left:1.2rem;margin:0}
+.verdict li{margin-bottom:.6rem}
+.note{font-size:.9rem;color:var(--muted)}
+.callout{background:var(--sand);padding:14px 18px;margin:0 0 18px;max-width:none}
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px);max-height:94vh}
+dialog.lb::backdrop{background:rgba(5,10,18,.9)}
+dialog.lb img{max-width:96vw;max-height:84vh;display:block;margin:0 auto}
+dialog.lb p{color:#fff;text-align:center;margin:10px 0 0;font-size:.95rem}
+dialog.lb button{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));font-size:1.4rem;line-height:1;background:#fff;color:#000;border:0;border-radius:999px;width:40px;height:40px;cursor:pointer}
+@media (max-width:640px){
+  body{font-size:16px}
+  .two{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion: reduce){.gallery img{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Familienurlaub · Juni 2027 · Variante B</span>
+  <h1>Resorts mit echtem Aquapark</h1>
+  <p class="lead">Die Luxus-Anlagen aus dem ersten Vergleich haben Kinderpools, aber keine Rutschen. Hier drei Resorts, bei denen der Wasserpark der Kern der Anlage ist – mit Kinderbereichen, die ein Vier- und ein Sechsjähriger nutzen dürfen. Alle drei All-inclusive, alle drei deutlich günstiger als Sani und Ikos.</p>
+  <div class="facts">
+    <span><b>Reisezeit:</b> Juni 2027</span>
+    <span><b>Kinder:</b> 6 · 4 · 2 Jahre</span>
+    <span><b>Zum Vergleich:</b> <a href="index.html">Variante A – Sani, Ikos, Westin</a></span>
+    <span><b>Stand:</b> Oktober 2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sprungmarken">
+  <a href="#vergleich">Vergleich</a>
+  <a href="#oasis">Grecotel LUXME Oasis</a>
+  <a href="#botanica">Grecotel Costa Botanica</a>
+  <a href="#marbella">MarBella Corfu</a>
+  <a href="#fazit">Fazit</a>
+</nav>
+
+<section id="vergleich">
+  <span class="eyebrow">Auf einen Blick</span>
+  <h2>Der Vergleich</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>Grecotel LUXME Oasis</th><th>Grecotel LUXME Costa Botanica</th><th>MarBella Corfu</th><th>Referenz: Westin Costa Navarino</th></tr></thead>
+    <tbody>
+      <tr><th>Lage</th><td>Loutra Kyllinis, West-Peloponnes</td><td>Acharavi, Nordküste Korfu</td><td>Agios Ioannis Peristeron, Südostküste Korfu</td><td class="ref">Messenien, Peloponnes</td></tr>
+      <tr><th>Anreise</th><td>Araxos (GPA), Charter ab München · ~55 km, 55 min · sonst Athen + 3,5 h</td><td class="best">Direktflug Salzburg–Korfu · ~40 km, 50 min</td><td class="best">Direktflug Salzburg–Korfu · 17 km, 25 min</td><td class="ref">Kalamata saisonal, ~40 min</td></tr>
+      <tr><th>Aquapark</th><td class="best">20.000 m², größter Resort-Wasserpark Griechenlands: 7 große Rutschen, Kinderbereich mit Aqua Tower (100 Wasserspiele), 1.200 m² Planschbecken, Kinderrutschen, Kletternetze, Kippeimer</td><td>Costa Aqua Park, ca. 40.000 m² Gelände, Lazy River, große und kleine Rutschen</td><td>„Anemelia“ Aquapark mit 8 Rutschen, Infinity-Pool</td><td class="ref">6 Rutschen, aber erst ab 1,20 m</td></tr>
+      <tr><th>Für 4 und 6</th><td class="best"><span class="pill hi">ideal</span> eigener Kinder-Wasserpark, keine Mindestgröße nötig</td><td><span class="pill hi">gut</span> kleine Rutschen laut Gästen vorhanden, Details beim Hotel erfragen</td><td><span class="pill mid">prüfen</span> Alters-/Größenlimits nicht angegeben</td><td class="ref"><span class="pill lo">knapp</span> nur der Große, wenn überhaupt</td></tr>
+      <tr><th>Betreuung</th><td>Grecoland 4–12 gratis (4–6 / 7–12), deutschsprachige Animation, GrecoBaby-Ausstattung 0–3, Babysitter kostenpflichtig</td><td>Grecoland 4–12 gratis, GrecoTeens, Babysitter kostenpflichtig, Mini-Zoo und Eselfarm</td><td class="best">Grasshoppers 4–12 täglich außer So, Krippe 4 Mo–4 J. (kostenpflichtig)</td><td class="ref">Cocoon 4 Mo–3 J., SandCastle 4–12</td></tr>
+      <tr><th>Verpflegung</th><td>All-inclusive</td><td>All Inclusive Plus, Kinder bis 12 in den À-la-carte-Restaurants gratis</td><td>Premium All Inclusive 7–1 Uhr, Dine-around in 3 Schwesterhotels</td><td class="ref">Frühstück/Halbpension</td></tr>
+      <tr><th>Strand</th><td class="best">direkt, flach, Blue Flag, kilometerlang</td><td>ca. 600 m über das Resortgelände, Sandstrand</td><td>2 eigene Strandabschnitte durch Unterführung, Familienstrand flach</td><td class="ref">1 km Dünenstrand</td></tr>
+      <tr><th>Richtpreis</th><td>Schätzung 8–12 k€ für 2 Wochen inkl. Flug</td><td class="best">ab ca. 1.290 £/Person/Woche inkl. Flug (Juni 2026)</td><td>Schätzung 8–12 k€ für 2 Wochen inkl. Flug</td><td class="ref">10–15 k€</td></tr>
+      <tr><th>Haken</th><td>Anreise: Araxos nur Charter, Aquapark 12–16:30 Uhr und Dienstag geschlossen</td><td>Strand nicht direkt am Hotel, Nordkorfu im Juni noch nicht ganz warm</td><td>Hanglage mit vielen Stufen, Kinderwagen mühsam</td><td class="ref">Rutschen für die Kleinen nicht nutzbar</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Grün markiert: die stärkste Anlage in dieser Zeile. Preise sind Größenordnungen aus Veranstalterangeboten (Oktober 2026), keine Angebote; Aquapark-Regeln vor Buchung beim Hotel bestätigen lassen.</p>
+</section>
+
+<section id="oasis">
+  <div class="resort-head">
+    <span class="eyebrow">Option 1 · Peloponnes</span>
+    <h2>Grecotel LUXME Oasis</h2>
+    <div class="where">Riviera Olympia &amp; Aqua Park, Loutra Kyllinis · All-inclusive · Blue-Flag-Strand</div>
+  </div>
+  <p class="callout"><b>Das ist die Antwort auf die Rutschen-Frage.</b> Der Olympia Aqua Park ist mit 20.000 m² der größte Resort-Wasserpark Griechenlands und hat einen eigenen Kinderbereich, in dem auch Vierjährige rutschen dürfen.</p>
+  <p>Das LUXME Oasis liegt an der Westküste des Peloponnes, eine Stunde südlich von Patras, direkt an einem kilometerlangen, flachen Sandstrand. Herzstück ist der Aqua Park mit sieben großen Rutschen (Looping Rocket, Space Hole, Black Hole, Rafting Slide, Wave Slide, Flying Boats, Multisurf) und einem Kinderbereich: Aqua Tower mit 100 Wasserspielen, 1.200 m² Planschbecken, Spielturm mit kleinen Rutschen, Kletternetzen, Wasserdüsen und Kippeimer. Dazu Grecoland-Kids-Club für 4- bis 12-Jährige in zwei Altersgruppen, deutschsprachige Animation, Spielplatz, Kinderbuffet und Kinderdisco.</p>
+  <p>Der Haken ist die Anreise: Der nächste Flughafen Araxos wird nur im Sommer per Charter bedient (u. a. ab München), alternativ Athen mit dreieinhalb Stunden Fahrt. Der Aquapark hat außerdem feste Öffnungszeiten (12–16:30 Uhr, dienstags geschlossen), der Rest der Pools ist ganztägig offen. Preislich liegt das Resort klar unter Sani und Ikos, konkrete Juni-Preise 2027 sind noch nicht freigeschaltet.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Araxos (GPA), Sommer-Charter ab München; Kalamata 150 km; Athen 3,5 h</div>
+    <div><b>Transfer</b>Araxos ~55 km, 55 min</div>
+    <div><b>Aquapark</b>20.000 m², 7 große Rutschen + Kinder-Wasserpark, 12–16:30 Uhr, Di geschlossen</div>
+    <div><b>Kinder</b>Grecoland 4–12 gratis, Grecokids 4–6, GrecoBaby 0–3, Babysitter extra</div>
+    <div><b>Verpflegung</b>All-inclusive, mehrere Restaurants</div>
+    <div><b>Strand</b>Direkt, flach, Blue Flag</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Der einzige echte Wasserpark der Auswahl, mit Bereich für Kleinkinder</li><li>Flacher Strand direkt vor der Anlage</li><li>Deutschsprachige Kinderanimation</li><li>Günstiger als die Luxus-Anlagen</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Anreise nur per Charter oder lange Fahrt ab Athen</li><li>Aquapark nur 4,5 Stunden am Tag, dienstags zu</li><li>Großanlage, weniger Ruhe als bei Ikos</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Grecotel LUXME Oasis">
+    <figure><img src="images/oasis-02.jpg" alt="Luftaufnahme Olympia Aqua Park" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Olympia Aqua Park von oben, dahinter der Strand</figcaption></figure>
+    <figure><img src="images/oasis-04.jpg" alt="Kinder auf einer Kinderrutsche" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Kinderbereich: Rutschen für die Kleinen</figcaption></figure>
+    <figure><img src="images/oasis-03.jpg" alt="Kind im Wasserspielbereich" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Aqua Tower mit Wasserspielen</figcaption></figure>
+    <figure><img src="images/oasis-05.jpg" alt="Aquapark Rutschen von oben" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die großen Rutschen im Überblick</figcaption></figure>
+    <figure><img src="images/oasis-07.jpg" alt="Aquapark und Strand" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Aquapark, Pinien, Strand</figcaption></figure>
+    <figure><img src="images/oasis-06.jpg" alt="Grecoland Kids Club" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Grecoland Kids-Club (4–12)</figcaption></figure>
+    <figure><img src="images/oasis-09.jpg" alt="Kinder auf der Wiese" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Familienprogramm</figcaption></figure>
+    <figure><img src="images/oasis-10.jpg" alt="Pool bei Sonnenuntergang" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool am Abend</figcaption></figure>
+    <figure><img src="images/oasis-12.jpg" alt="Strand mit Familie" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Der flache Strand</figcaption></figure>
+    <figure><img src="images/oasis-14.jpg" alt="Küste bei Kyllini" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Küste vor dem Resort</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Grecotel</p>
+</section>
+
+<section id="botanica">
+  <div class="resort-head">
+    <span class="eyebrow">Option 2 · Korfu</span>
+    <h2>Grecotel LUXME Costa Botanica</h2>
+    <div class="where">Acharavi, Nordküste · All Inclusive Plus · Direktflug ab Salzburg</div>
+  </div>
+  <p>Costa Botanica ist die Grecotel-Anlage im Norden Korfus, in einer weiten Ebene zwischen Bergen und Meer, mit botanischem Garten, Mini-Zoo und Eselfarm. Der Costa Aqua Park mit Lazy River und Rutschen (laut Gästen große und kleine) liegt mitten im Resort, dazu vier Außenpools und ein Hallenbad. Grecoland-Kids-Club für 4- bis 12-Jährige, Kinder bis 12 essen in den À-la-carte-Restaurants gratis.</p>
+  <p>Der Vorteil gegenüber dem Oasis ist die Anreise: Korfu direkt ab Salzburg, 50 Minuten Transfer. Der Nachteil: Der Strand liegt etwa 600 Meter entfernt, man geht durchs Resortgelände hin, und die Nordküste ist im Juni etwas kühler als der Süden. Dafür ist es das günstigste der drei Resorts.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Korfu (CFU), Direktflug ab Salzburg im Sommer</div>
+    <div><b>Transfer</b>~40 km, 50 min</div>
+    <div><b>Aquapark</b>Costa Aqua Park, Lazy River, große und kleine Rutschen</div>
+    <div><b>Kinder</b>Grecoland 4–12 gratis, GrecoTeens, Babysitter extra, Mini-Zoo</div>
+    <div><b>Verpflegung</b>All Inclusive Plus, 5 Restaurants, Kinder bis 12 À-la-carte gratis</div>
+    <div><b>Juni-Preis</b>ab ca. 1.290 £/Person/Woche inkl. Flug (Juni 2026)</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Direktflug ab Salzburg</li><li>Aquapark mit Lazy River, Hallenbad für kühle Tage</li><li>Mini-Zoo und Eselfarm, viel Platz zum Laufen</li><li>Günstigster Preis der Auswahl</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Strand nicht direkt am Hotel</li><li>Rutschen-Details für Kleinkinder nicht dokumentiert, vorher nachfragen</li><li>Großanlage mit Animations-Charakter</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Grecotel LUXME Costa Botanica">
+    <figure><img src="images/botanica-05.jpg" alt="Costa Aqua Park mit Rutschen" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Costa Aqua Park mit Rutschen und Pools</figcaption></figure>
+    <figure><img src="images/botanica-01.jpg" alt="Luftaufnahme Costa Botanica" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Anlage von oben</figcaption></figure>
+    <figure><img src="images/botanica-02.jpg" alt="Pool mit Palmen am Meer" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool mit Blick aufs Meer</figcaption></figure>
+    <figure><img src="images/botanica-09.jpg" alt="Resort bei Sonnenuntergang" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Blick über das Resort zur Küste</figcaption></figure>
+    <figure><img src="images/botanica-04.jpg" alt="Strand von Acharavi" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Der Strand von Acharavi</figcaption></figure>
+    <figure><img src="images/botanica-03.jpg" alt="Radfahren in der Ebene" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Radwege in der Ebene hinter dem Resort</figcaption></figure>
+    <figure><img src="images/botanica-10.jpg" alt="Summerhouses" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Summerhouses</figcaption></figure>
+    <figure><img src="images/botanica-11.jpg" alt="Country House" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Country House</figcaption></figure>
+    <figure><img src="images/botanica-12.jpg" alt="Restaurant" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Restaurant im Freien</figcaption></figure>
+    <figure><img src="images/botanica-14.jpg" alt="Botanik-Shop" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Botanischer Shop</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Grecotel</p>
+</section>
+
+<section id="marbella">
+  <div class="resort-head">
+    <span class="eyebrow">Option 3 · Korfu</span>
+    <h2>MarBella Corfu</h2>
+    <div class="where">Agios Ioannis Peristeron, Südostküste · Premium All Inclusive · 17 km vom Flughafen</div>
+  </div>
+  <p>Das MarBella liegt am Hang über zwei eigenen Strandabschnitten an der ruhigen Ostküste, 25 Minuten vom Flughafen und von Korfu-Stadt. Der „Anemelia“-Aquapark hat acht Rutschen und einen Infinity-Pool, der Familienstrand ist flach und hat eine Zone für nicht motorisierten Wassersport. Besonders für die Zweijährige interessant: eine Krippe ab vier Monaten, dazu der Grasshoppers-Club für 4- bis 12-Jährige. Premium All Inclusive von 7 bis 1 Uhr mit Dine-around in den drei Schwesterhotels.</p>
+  <p>Zu beachten: Alters- und Größenlimits für die Rutschen sind nicht veröffentlicht, und die Hanglage bedeutet viele Stufen – mit Kinderwagen mühsam. Familienzimmer mit getrenntem Schlafbereich gibt es in mehreren Varianten, Bungalow Family Suites mit zwei Schlafzimmern auf Anfrage.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Korfu (CFU), Direktflug ab Salzburg im Sommer</div>
+    <div><b>Transfer</b>17 km, ~25 min</div>
+    <div><b>Aquapark</b>„Anemelia“, 8 Rutschen, Infinity-Pool, 10–18 Uhr</div>
+    <div><b>Kinder</b>Krippe 4 Mo–4 J. (extra), Grasshoppers 4–12 täglich außer So</div>
+    <div><b>Verpflegung</b>Premium All Inclusive 7–1 Uhr, Dine-around</div>
+    <div><b>Strand</b>2 eigene Abschnitte, Familienstrand flach, über Unterführung</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Kürzester Transfer, Direktflug ab Salzburg</li><li>Krippe ab 4 Monaten, 8 Rutschen</li><li>Ruhige Ostküste, Korfu-Stadt in 25 Minuten</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Hanglage, viele Stufen</li><li>Rutschenlimits unklar</li><li>Kein eigener Kinder-Wasserpark wie im Oasis</li></ul></div>
+  </div>
+  <div class="gallery small" data-resort="MarBella Corfu">
+    <figure><img src="images/marbella-08.jpg" alt="MarBella Corfu vom Meer aus" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Das Hotel am Hang über dem Strand</figcaption></figure>
+    <figure><img src="images/marbella-12.jpg" alt="MarBella Corfu Luftaufnahme" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Lage an der Ostküste</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Mar-Bella Collection. Vom Aquapark selbst waren keine freigegebenen Fotos auffindbar.</p>
+</section>
+
+<section id="fazit">
+  <span class="eyebrow">Einordnung</span>
+  <h2>Fazit</h2>
+  <div class="verdict">
+    <ol>
+      <li><b>Grecotel LUXME Oasis</b> ist das Resort, wenn der Wasserpark zählt: eigener Kinderbereich, flacher Strand, deutschsprachige Betreuung. Einziger echter Nachteil ist die Charter-Anreise.</li>
+      <li><b>Costa Botanica</b> ist der Kompromiss mit Direktflug ab Salzburg und dem günstigsten Preis; der Aquapark ist kleiner, der Strand nicht direkt am Haus.</li>
+      <li><b>MarBella Corfu</b> punktet mit Krippe und kürzestem Transfer, die Hanglage und die unklaren Rutschenregeln sprechen dagegen.</li>
+    </ol>
+  </div>
+  <p class="note" style="margin-top:18px">Gegenüber Variante A tauscht man Sterneküche und Ruhe gegen Rutschen, Animation und etwa die Hälfte des Preises. Der Aqua Park im Oasis ist dabei nicht nur „auch vorhanden“, sondern der Grund, dorthin zu fahren.</p>
+  <h3 style="margin-top:28px">Quellen</h3>
+  <ul class="sources">
+    <li><a href="https://www.grecotel.com/luxme-oasis/olympia-aqua-park/">Grecotel LUXME Oasis – Olympia Aqua Park</a>, Grecotel Family Holidays, nix-wie-weg, Destination2</li>
+    <li><a href="https://www.grecotel.com/resort-costabotanica/">Grecotel LUXME Costa Botanica</a>, DERTOUR, Destination2</li>
+    <li><a href="https://www.schauinsland-reisen.de/hotel/6007-marbella-mar-bella-collection">MarBella Corfu – schauinsland-reisen</a></li>
+    <li>Transfers: suntransfers.com (Araxos); Flüge: Salzburg Airport Sommerflugplan, TUI (MUC–GPA)</li>
+  </ul>
+</section>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Foto in groß">
+  <button type="button" id="lbClose" aria-label="Schließen">×</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</dialog>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  if(!lb||!lb.showModal) return;
+  document.querySelectorAll('.gallery figure').forEach(function(f){
+    f.addEventListener('click',function(){
+      var i=f.querySelector('img'),c=f.querySelector('figcaption');
+      img.src=i.currentSrc||i.src; img.alt=i.alt;
+      cap.textContent=(f.closest('.gallery').dataset.resort||'')+' · '+(c?c.textContent:'');
+      lb.showModal();
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+})();
+</script>
+
+</body>
+</html>
