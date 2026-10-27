@@ -15,8 +15,23 @@ TARGETS = {
         "https://www.grecotel.com/resort-costabotanica/",
         "https://www.tropicalsky.co.uk/europe-holidays/greece/corfu/grecotel-lux-me-costa-botanica",
     ],
-    "marbella": [
-        "https://www.marbella.gr/",
+    "forte": [
+        "https://www.fortevillage.com/en/",
+        "https://www.fortevillage.com/en/families/",
+        "https://www.fortevillage.com/en/pools/",
+        "https://www.fortevillage.com/en/hotel-bouganville/",
+    ],
+    "tirreno": [
+        "https://www.charmingsardinia.com/sardinien/tirreno-resort",
+        "https://www.valtur.it/villaggi/valtur-sardegna-tirreno-resort/",
+    ],
+    "tortuga": [
+        "https://www.baiaholiday.com/en/campsites/baia-blu-la-tortuga",
+        "https://www.baiaholiday.com/it/villaggi/baia-blu-la-tortuga",
+    ],
+    "chia": [
+        "https://www.chialagunaresort.com/en/",
+        "https://www.chialagunaresort.com/en/chia-laguna-hotel-village/",
     ],
     "kids": [
         "https://ikosresorts.com/resorts/ikos-olivia/kids/",
@@ -56,6 +71,7 @@ def basekey(u):
     u = re.sub(r'-\d{2,4}x\d{2,4}(?=\.\w+$)', '', u)
     return u.rsplit('/',1)[-1].lower()
 for prefix, pages in TARGETS.items():
+    if os.path.exists(f"images/{prefix}.txt"): print(prefix, "done"); continue
     seen, cands = set(), []
     pages = expand(pages)
     print(prefix, "pages", len(pages))
