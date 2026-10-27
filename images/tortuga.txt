@@ -1,0 +1,14 @@
+images/tortuga-01.jpg 4098x2303 https://www.baiaholiday.com/wp-content/uploads/2026/04/baia-holiday-TORT-Spiaggia-2019-6.jpg
+images/tortuga-02.jpg 5464x3070 https://www.baiaholiday.com/wp-content/uploads/2026/09/TORT-Panoramica-2019-2-web.jpg
+images/tortuga-03.jpg 1920x1080 https://www.baiaholiday.com/wp-content/uploads/2026/09/traghetti-sardegnajpg-2.webp
+images/tortuga-04.jpg 1900x1200 https://www.baiaholiday.com/wp-content/uploads/2026/01/p-5-1.jpeg
+images/tortuga-05.jpg 1900x1200 https://www.baiaholiday.com/wp-content/uploads/2026/01/p-52.jpeg
+images/tortuga-06.jpg 1900x1200 https://www.baiaholiday.com/wp-content/uploads/2026/01/slider-3.jpeg
+images/tortuga-07.jpg 1920x1080 https://www.baiaholiday.com/wp-content/uploads/2026/01/veranda-baia-sardina.jpg
+images/tortuga-08.jpg 1024x768 https://www.baiaholiday.com/wp-content/uploads/2025/10/baia-holiday-TORT-RealxNewPlus-09-2024-1-1024x768.jpg
+images/tortuga-09.jpg 2286x1650 https://www.baiaholiday.com/wp-content/uploads/2025/12/lolgo-bandiera-blu-2026.jpg
+images/tortuga-10.jpg 900x604 https://www.baiaholiday.com/wp-content/uploads/2025/09/struttura-01.jpg
+images/tortuga-11.jpg 900x604 https://www.baiaholiday.com/wp-content/uploads/2025/09/struttura-03.jpg
+images/tortuga-12.jpg 1583x1000 https://www.baiaholiday.com/wp-content/uploads/2025/09/struttura-04.jpg
+images/tortuga-13.jpg 1024x647 https://www.baiaholiday.com/wp-content/uploads/2026/01/slider-1-1024x647.jpeg
+images/tortuga-14.jpg 1024x683 https://www.baiaholiday.com/wp-content/uploads/2026/01/Blu_Romantic-1024x683.jpg

@@ -1,0 +1,14 @@
+images/chia-01.jpg 1176x1400 https://www.chialagunaresort.com/wp-content/uploads/2021/05/IHC-Chia_Laguna-beaches_vertical-slider_1.jpg
+images/chia-02.jpg 2000x1055 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Droneboat1.webp
+images/chia-03.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Little-explorers-club.jpg
+images/chia-04.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Quad-safari-2.jpg
+images/chia-05.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Sunrise-Hikes-2.jpg
+images/chia-06.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Ride-the-dunes-1.jpg
+images/chia-07.jpg 2500x1667 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Clay-Canvas_South-Sardinia_Chia-Laguna-Nature-Resort.jpg
+images/chia-08.jpg 2500x1667 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Little-Sardinian-Chefs_South-Sardinia_Chia-Laguna-Nature-Resort.jpg
+images/chia-09.jpg 2048x2314 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Message-in-a-bottle-2-e1769091413585.jpg
+images/chia-10.jpg 2048x1894 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Family-Treat-Time-e1769088571116.jpg
+images/chia-11.jpg 2048x2263 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Wildlife-photography-walks-1-e1769091541598.jpg
+images/chia-12.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Lady-Bee-2.jpg
+images/chia-13.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Sunset-supper-overlo.jpg
+images/chia-14.jpg 2048x1365 https://www.chialagunaresort.com/wp-content/uploads/2025/10/Chia-Laguna-Nature-Resort_Sardinian-Soul-Salt-Ritual.jpg
