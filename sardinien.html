@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sardinien Juni 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: same reading column as the other two pages; anreise block first because it decides the rest. */
+:root{
+  --bg:#f6f4ee; --surface:#ffffff; --fg:#1d2430; --muted:#5c6577; --line:#dcd7cc;
+  --accent:#1f5f8b; --accent-ink:#ffffff; --sand:#eadfc9; --sea:#dfeaf1;
+  --ok:#2e7d4f; --warn:#b4572a;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-variation-settings:"opsz" 144}
+h2{font-size:clamp(1.6rem,4vw,2.3rem)}
+h3{font-size:1.15rem;margin-bottom:.4rem}
+p{margin:0 0 1rem;max-width:68ch}
+a{color:var(--accent)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.hero{padding-block:56px 32px;border-bottom:1px solid var(--line);display:grid;gap:14px}
+header.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.95rem}
+.facts span b{color:var(--fg);font-weight:600}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:20px}
+nav.toc a{text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.92rem;color:var(--fg);background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);outline:none}
+section{padding-block:40px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.table-wrap{overflow-x:auto;margin-top:18px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.93rem;background:var(--surface)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+thead th{background:var(--sea);position:sticky;top:0}
+tbody th{width:150px;color:var(--muted);font-weight:600;white-space:nowrap}
+td.best{box-shadow:inset 3px 0 0 var(--ok)}
+.pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:600;letter-spacing:.03em}
+.pill.hi{background:var(--ok);color:#fff}.pill.mid{background:var(--sand);color:var(--fg)}.pill.lo{background:var(--line);color:var(--fg)}
+.anreise{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.anreise>div{background:var(--surface);border:1px solid var(--line);padding:18px 20px;min-width:0}
+.anreise ul{margin:.4rem 0 0;padding-left:1.1rem}
+.anreise li{margin-bottom:.3rem}
+.anreise .sum{font-weight:600;margin-top:.8rem}
+.resort-head{margin-bottom:16px}
+.resort-head .where{color:var(--muted);font-size:1rem;margin-top:6px}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;margin:18px 0 22px;padding:14px 16px;background:var(--surface);border:1px solid var(--line)}
+.keyfacts div{font-size:.92rem;min-width:0}
+.keyfacts div b{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px;margin-bottom:22px}
+.two ul{margin:0;padding-left:1.1rem}
+.two li{margin-bottom:.35rem}
+.pro h3::before{content:"+ ";color:var(--ok)}.con h3::before{content:"– ";color:var(--warn)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.gallery figure{margin:0;position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--sea);cursor:zoom-in}
+.gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.gallery figure:hover img{transform:scale(1.03)}
+.gallery figcaption{position:absolute;inset:auto 0 0 0;padding:18px 10px 8px;font-size:.78rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.credit{font-size:.8rem;color:var(--muted);margin-top:10px}
+.verdict{background:var(--surface);border:1px solid var(--line);padding:22px 24px;margin-top:8px}
+.verdict ol{padding-left:1.2rem;margin:0}
+.verdict li{margin-bottom:.6rem}
+.note{font-size:.9rem;color:var(--muted)}
+.callout{background:var(--sand);padding:14px 18px;margin:0 0 18px;max-width:none}
+ul.sources{font-size:.85rem;color:var(--muted);columns:2;column-gap:32px;padding-left:1.1rem}
+ul.sources li{break-inside:avoid;margin-bottom:.3rem}
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px);max-height:94vh}
+dialog.lb::backdrop{background:rgba(5,10,18,.9)}
+dialog.lb img{max-width:96vw;max-height:84vh;display:block;margin:0 auto}
+dialog.lb p{color:#fff;text-align:center;margin:10px 0 0;font-size:.95rem}
+dialog.lb button{position:fixed;top:max(10px,env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));font-size:1.4rem;line-height:1;background:#fff;color:#000;border:0;border-radius:999px;width:40px;height:40px;cursor:pointer}
+@media (max-width:640px){
+  body{font-size:16px}
+  .two,.anreise{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  ul.sources{columns:1}
+}
+@media (prefers-reduced-motion: reduce){.gallery img{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Familienurlaub · Juni 2027 · Variante C</span>
+  <h1>Sardinien: Flug oder Fähre, vier Resorts</h1>
+  <p class="lead">Sardinien liegt näher als Griechenland, hat im Juni 25–28 °C und türkisfarbenes Wasser wie in der Karibik, und man kann hin fliegen oder mit dem eigenen Auto über eine Nachtfähre. Hier beide Anreisewege durchgerechnet und vier Anlagen, die zu drei Kindern (6, 4, 2) passen – vom Luxus-Resort bis zum Mobilheim mit Rutschen.</p>
+  <div class="facts">
+    <span><b>Reisezeit:</b> Juni 2027, 7–14 Nächte</span>
+    <span><b>Kinder:</b> 6 · 4 · 2 Jahre</span>
+    <span><b>Variante A:</b> <a href="index.html">Griechenland Luxus</a></span>
+    <span><b>Variante B:</b> <a href="aquapark.html">Griechenland Aquapark</a></span>
+    <span><b>Stand:</b> Oktober 2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sprungmarken">
+  <a href="#anreise">Anreise</a>
+  <a href="#vergleich">Vergleich</a>
+  <a href="#forte">Forte Village</a>
+  <a href="#tirreno">Tirreno Resort</a>
+  <a href="#chia">Chia Laguna</a>
+  <a href="#tortuga">Baia Blu La Tortuga</a>
+  <a href="#fazit">Fazit</a>
+</nav>
+
+<section id="anreise">
+  <span class="eyebrow">Zuerst die Frage, die alles andere entscheidet</span>
+  <h2>Flug oder Auto mit Fähre?</h2>
+  <div class="anreise">
+    <div>
+      <h3>Fliegen: Salzburg–Olbia direkt</h3>
+      <ul>
+        <li>Eurowings fliegt Salzburg–Olbia im Sommer <b>ca. 9× pro Woche</b>, Flugzeit rund 1 h 20 min. Juni 2027 ab ca. 160 € pro Strecke und Person (Basic-Tarif, Gepäck extra). Neu ab Sommer 2026 auch Salzburg–Cagliari samstags.</li>
+        <li>Für den Süden (Forte Village, Chia) ist Cagliari der richtige Flughafen: ab München mit Lufthansa/Eurowings, ab Salzburg samstags.</li>
+        <li>Vor Ort Mietwagen nötig (7-Sitzer für drei Kindersitze, ca. 70–100 €/Tag im Juni) oder Resort-Transfer.</li>
+      </ul>
+      <p class="sum">Grob 2.000–2.800 € für Flüge + Gepäck + Mietwagen, Tür-zu-Tür ab Ibm 5–6 Stunden.</p>
+    </div>
+    <div>
+      <h3>Auto + Nachtfähre: Ibm–Livorno–Olbia</h3>
+      <ul>
+        <li>Ibm–Livorno ca. 750 km / 8 h über Brenner und Modena (Zwischenstopp am Gardasee macht es zu zwei entspannten Etappen).</li>
+        <li>Livorno–Olbia: Moby täglich 22:00 → 07:00, Grimaldi mehrere Nächte pro Woche, 8,5–10 h. Innenkabine für 5 im Juni ca. 400–500 €, mit Auto pro Richtung grob 600–800 €.</li>
+        <li>Alternativ Genua–Olbia (GNV, Moby), 11–12 h, näher am Brenner liegt aber Livorno.</li>
+        <li>Eigenes Auto vor Ort, alle Kindersitze dabei, Kofferraum voll mit Strandzeug, Buggy und Bollerwagen.</li>
+      </ul>
+      <p class="sum">Grob 1.500–2.000 € für Fähre hin/zurück + Sprit + Maut + 1 Hotelnacht. Zwei Reisetage pro Richtung – bei nur einer Woche zu viel, bei zwei Wochen ist die Nachtfähre für einen Sechs- und Vierjährigen das Abenteuer, das sie noch Jahre erzählen.</p>
+    </div>
+  </div>
+  <p class="callout" style="margin-top:18px"><b>Faustregel:</b> 1 Woche → fliegen (Salzburg–Olbia, Nordosten). 2 Wochen → Auto und Nachtfähre, dann auch der Süden erreichbar, ohne nochmal umsteigen zu müssen.</p>
+</section>
+
+<section id="vergleich">
+  <span class="eyebrow">Auf einen Blick</span>
+  <h2>Der Vergleich</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th></th><th>Forte Village</th><th>Tirreno Resort</th><th>Chia Laguna Hotel Village</th><th>Baia Blu La Tortuga</th></tr></thead>
+    <tbody>
+      <tr><th>Typ</th><td>Luxus-Resortstadt, 8 Hotels, 21 Restaurants</td><td>4-Sterne All-inclusive-Resort</td><td>4-Sterne Resort in Dünenlandschaft</td><td>Camping Village mit Mobilheimen</td></tr>
+      <tr><th>Lage</th><td>Santa Margherita di Pula, Süden</td><td>Cala Liberotto / Orosei, Ostküste</td><td>Chia, Südwesten</td><td>Aglientu, Nordküste (Gallura)</td></tr>
+      <tr><th>Anreise</th><td>Cagliari 40 min · Fähre Olbia 3 h</td><td class="best">Olbia 73 km, ~1 h · Fähre Olbia 1 h</td><td>Cagliari ~55 min · Fähre Olbia 3,5 h</td><td class="best">Olbia 80 km, ~1 h 15 · Fähre Olbia 1 h 15</td></tr>
+      <tr><th>Wasser für 4 und 6</th><td class="best"><span class="pill hi">sehr gut</span> Acquapark mit kleinen Rutschen und Splash-Pad, Piratenschiff, 9 Pools, Oasis-Pool mit Flacheinstieg</td><td class="best"><span class="pill hi">gut</span> 50-m-Pool mit Rutsche und Bachlauf, Kinder- und Babypool, Piratenschiff</td><td><span class="pill mid">ok</span> Kinderpool, keine Rutschen</td><td><span class="pill hi">gut</span> Poollandschaft mit Rutschen, Kinder-Splashpool, Whirlpools (Badehaube Pflicht)</td></tr>
+      <tr><th>Betreuung</th><td class="best">Children's Wonderland: gratis 2–12 J., 9–12:30 und 14:30–18 Uhr, unter 2 gegen Gebühr; Babysitter</td><td>Baby Club 3–6, Mini Club 6–12, gratis</td><td>Mini-Club 3–5, Cadet 6–10; Babysitter 0–2 extra</td><td>Miniclub erst ab 5 J., Mitte Juni–Ende Aug., kostenpflichtig</td></tr>
+      <tr><th>Für die 2-Jährige</th><td class="best">Kids-Club ab 2 inklusive, Buggys/Wippen leihbar</td><td>Babypool, Betreuung erst ab 3</td><td>Betreuung erst ab 3</td><td>keine Betreuung, aber Splashpool und flacher Strand</td></tr>
+      <tr><th>Strand</th><td class="best">privat, Goldsand, flach, direkt</td><td>190 m, Bucht mit flachem Einstieg, Aufsicht</td><td>700 m, Bimmelbahn „Chia Express“</td><td>direkt, 600 m Sandstrand, Pinien</td></tr>
+      <tr><th>Verpflegung</th><td>Halbpension (Wein extra)</td><td class="best">All-inclusive</td><td>Halbpension</td><td>Selbstversorgung, Restaurant am Platz</td></tr>
+      <tr><th>Familienzimmer</th><td>Bouganville Family Bungalow bis 5, Verbindungszimmer</td><td>prüfen: Veranstalter zeigen nur Doppelzimmer, Family Rooms direkt anfragen</td><td>max. 4 pro Zimmer → 2 Verbindungszimmer</td><td class="best">Mobilheim Baia Elite 31–35 m², 3 Schlafzimmer</td></tr>
+      <tr><th>Richtpreis 2 Wo.</th><td>12–20 k€ (Bouganville ab ca. 330 €/Nacht Nebensaison, Juni höher) + Anreise</td><td class="best">5–8 k€ All-inclusive + Anreise</td><td>8–12 k€ + Anreise (Kinder bis 5 gratis)</td><td class="best">2–3,5 k€ Mobilheim + Anreise + Verpflegung</td></tr>
+      <tr><th>Haken</th><td>Preis, Süden = längere Anreise, Halbpension</td><td>Großanlage mit Animation, Strand nicht direkt</td><td>Strand weit, keine Rutschen, kein Zimmer für 5</td><td>kein Club für die Kleinen, Badehauben, Selbstversorgung</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Grün markiert: die stärkste Anlage in dieser Zeile. Preise sind Größenordnungen aus Veranstalterangeboten (Oktober 2026), keine Angebote; Juni-2027-Preise sind teils noch nicht freigeschaltet.</p>
+</section>
+
+<section id="forte">
+  <div class="resort-head">
+    <span class="eyebrow">Option 1 · Süden</span>
+    <h2>Forte Village</h2>
+    <div class="where">Santa Margherita di Pula · 8 Hotels in einem Park am Meer · Halbpension</div>
+  </div>
+  <p class="callout"><b>Das Sani Resort Sardiniens</b> – mit dem Unterschied, dass es hier Rutschen und einen Kids-Club ab 2 Jahren gibt.</p>
+  <p>Forte Village ist eine 47 Hektar große Resortstadt an der Südküste, 40 Minuten vom Flughafen Cagliari: acht Hotels von 4 bis 5 Sternen, 21 Restaurants, Thalasso-Spa, Go-Kart-Bahn, Bowling, Sportakademien, ein eigenes Konzert-Amphitheater und ein privater Goldsandstrand. Für Kinder: der Acquapark mit kleinen Rutschen und Splash-Pad, Piratenschiff für die Kleinsten, neun Pools mit Kinderbereichen, ein Oasis-Pool mit Flacheinstieg. Children's Wonderland ist für 2- bis 12-Jährige kostenlos, ganztägig in zwei Blöcken, Eltern dürfen mitspielen; unter 2 kostet die Betreuung extra.</p>
+  <p>Für fünf Personen passt das 4-Sterne-Haus <b>Bouganville</b> mit Luxury Family Bungalows oder Verbindungszimmern, alternativ Le Palme. Die 5-Sterne-Häuser (Castello, Pineta) sind spürbar teurer. Verpflegung ist Halbpension, Mittagessen und Getränke kommen dazu. Anreise: Flug nach Cagliari (ab Salzburg samstags, ab München täglich) oder mit dem Auto 3 Stunden von der Fähre in Olbia.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Cagliari (CAG), SZG samstags, MUC täglich · Transfer 40 min</div>
+    <div><b>Mit Auto</b>Olbia-Fähre → 3 h Autobahn/Landstraße</div>
+    <div><b>Wasser</b>Acquapark mit Kinderrutschen, Splash-Pad, Piratenschiff, 9 Pools (beheizt unter 28 °C)</div>
+    <div><b>Kinder</b>Wonderland gratis 2–12, unter 2 kostenpflichtig, Babysitter</div>
+    <div><b>Verpflegung</b>Halbpension, 21 Restaurants, Wein extra</div>
+    <div><b>Preis</b>Bouganville ab ca. 330 €/Nacht (Nebensaison), Juni deutlich höher</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Einziges Resort der Auswahl mit Betreuung ab 2 Jahren inklusive</li><li>Rutschen, Piratenschiff und Pools für jedes Alter</li><li>Privatstrand direkt, Programm für zwei Wochen ohne Langeweile</li><li>Luxusniveau wie Sani/Ikos, aber mit Rutschen</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Teuerstes Haus der Auswahl, Halbpension statt All-inclusive</li><li>Süden: längere Fahrt von Olbia, Cagliari ab Salzburg nur samstags</li><li>Sehr groß, viel Betrieb im Hochsommer</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Forte Village">
+    <figure><img src="images/forte-32.jpg" alt="Oasis-Pool mit Flacheinstieg und Kinderbereich" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Oasis-Pool mit Flacheinstieg und Kinderbereich</figcaption></figure>
+    <figure><img src="images/forte-2018.jpg" alt="Children's Wonderland: Kinderdorf mit Spielhäusern" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Children's Wonderland: Kinderdorf mit Spielhäusern</figcaption></figure>
+    <figure><img src="images/forte-201.jpg" alt="Strand, Pinien und Pool von oben" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Strand, Pinien und Pool von oben</figcaption></figure>
+    <figure><img src="images/forte-13.jpg" alt="Das Resort an der Südküste" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Das Resort an der Südküste</figcaption></figure>
+    <figure><img src="images/forte-115.jpg" alt="Der private Strand mit Steg" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Der private Strand mit Steg</figcaption></figure>
+    <figure><img src="images/forte-2011.jpg" alt="Fußballakademie ab 4 Jahren" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Fußballakademie ab 4 Jahren</figcaption></figure>
+    <figure><img src="images/forte-149.jpg" alt="Sportplätze am Meer" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Sportplätze am Meer</figcaption></figure>
+    <figure><img src="images/forte-1221.jpg" alt="Pool mit Wasserfall" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool mit Wasserfall</figcaption></figure>
+    <figure><img src="images/forte-619.jpg" alt="Deluxe Family Bungalow, Bouganville" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Family Bungalow, Bouganville</figcaption></figure>
+    <figure><img src="images/forte-64.jpg" alt="Deluxe Family Plus, Bouganville" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Deluxe Family Plus, Bouganville</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Forte Village via British Airways Holidays</p>
+</section>
+
+<section id="tirreno">
+  <div class="resort-head">
+    <span class="eyebrow">Option 2 · Ostküste</span>
+    <h2>Tirreno Resort (Sentido / Valtur)</h2>
+    <div class="where">Cala Liberotto bei Orosei · 4 Sterne · All-inclusive · 1 h von Olbia</div>
+  </div>
+  <p>Das Tirreno ist das Preis-Leistungs-Resort der Auswahl: All-inclusive, eine Stunde vom Flughafen und von der Fähre in Olbia, am Golf von Orosei mit seinen berühmten Buchten (Cala Luna, Cala Goloritzé per Boot). Der 50 Meter lange Hauptpool hat eine Rutsche, einen künstlichen Bachlauf und Massagedüsen, dazu Kinder- und Babypool mit Piratenschiff, Spielplatz, Minigolf. Baby Club 3–6 und Mini Club 6–12 sind inklusive. Der Sandstrand liegt 190 Meter entfernt in einer Bucht mit flachem Einstieg und Badeaufsicht.</p>
+  <p>Beim Zimmer genau hinschauen: Die deutschen Veranstalter zeigen vor allem Doppelzimmer, Familienzimmer für fünf muss man direkt beim Hotel anfragen. Preis im Mai 2027 ab ca. 118 € pro Person und Nacht All-inclusive, Kinder reduziert.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Olbia (OLB), SZG 9×/Woche · 73 km, ~1 h</div>
+    <div><b>Mit Auto</b>Olbia-Fähre → 1 h</div>
+    <div><b>Wasser</b>50-m-Pool mit Rutsche und Bachlauf, Kinder- und Babypool, Piratenschiff</div>
+    <div><b>Kinder</b>Baby Club 3–6, Mini Club 6–12, gratis; Animation</div>
+    <div><b>Verpflegung</b>All-inclusive</div>
+    <div><b>Preis</b>ab ca. 118 €/Person/Nacht AI (Mai 2027), Juni etwas höher</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Kurze Anreise ab Salzburg oder Fähre</li><li>Rutsche, Bachlauf, Piratenschiff, All-inclusive</li><li>Golf von Orosei: Bootsausflüge zu den schönsten Buchten der Insel</li><li>Halber Preis von Forte Village</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Klassische Clubanlage mit Animation</li><li>Betreuung erst ab 3, Zimmer für 5 unklar</li><li>Strand 190 m, nicht direkt</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Tirreno Resort">
+    <figure><img src="images/tirreno-f.jpg" alt="Der 50-m-Pool mit Rutsche" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Der 50-m-Pool mit Rutsche</figcaption></figure>
+    <figure><img src="images/tirreno-c.jpg" alt="Die Bucht von Cala Liberotto" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Bucht von Cala Liberotto</figcaption></figure>
+    <figure><img src="images/tirreno-d.jpg" alt="Flacher Einstieg, Badeaufsicht" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Flacher Einstieg, Badeaufsicht</figcaption></figure>
+    <figure><img src="images/tirreno-e.jpg" alt="Die Anlage von oben" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Anlage von oben</figcaption></figure>
+    <figure><img src="images/tirreno-b.jpg" alt="Küste bei Orosei" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Küste bei Orosei</figcaption></figure>
+    <figure><img src="images/tirreno-a.jpg" alt="Golf von Orosei" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Golf von Orosei</figcaption></figure>
+    <figure><img src="images/tirreno-g.jpg" alt="Restaurantterrasse" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Restaurantterrasse am Meer</figcaption></figure>
+    <figure><img src="images/tirreno-j.jpg" alt="Pool am Morgen" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool am Morgen</figcaption></figure>
+    <figure><img src="images/tirreno-k.jpg" alt="Pool am Abend" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool am Abend</figcaption></figure>
+    <figure><img src="images/tirreno-m.jpg" alt="Familienzimmer" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Familienzimmer</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Valtur / DERTOUR / Charming Sardinia</p>
+</section>
+
+<section id="chia">
+  <div class="resort-head">
+    <span class="eyebrow">Option 3 · Südwesten</span>
+    <h2>Chia Laguna Hotel Village</h2>
+    <div class="where">Chia · 4 Sterne · Halbpension · Dünen, Lagune mit Flamingos</div>
+  </div>
+  <p>Chia hat die vielleicht schönsten Strände der Insel: Dünen, Lagune mit Flamingos, türkisfarbenes Wasser. Das Hotel Village ist der familienfreundliche Teil des Chia Laguna Resorts (daneben das Conrad als 5-Sterne-Haus). Zwei Pools, davon ein Kinderpool, Mini-Club 3–5 und Cadet-Club 6–10, Bimbi Corner zum Abendessen. Kinder bis 5 wohnen in allen Saisonen kostenlos. Der Strand liegt 700 Meter entfernt, die Bimmelbahn „Chia Express“ fährt pendelnd.</p>
+  <p>Für euch mit zwei Einschränkungen: keine Rutschen, und kein Zimmer für fünf – es braucht zwei Verbindungszimmer. Das ist eher der Urlaub fürs Strandleben und die Landschaft als für den Wasserpark.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Cagliari (CAG) · ~55 km, 55 min</div>
+    <div><b>Mit Auto</b>Olbia-Fähre → 3,5 h</div>
+    <div><b>Wasser</b>2 Pools, davon 1 Kinderpool; keine Rutschen</div>
+    <div><b>Kinder</b>Mini-Club 3–5, Cadet 6–10; Babysitter 0–2 extra; bis 5 J. gratis</div>
+    <div><b>Verpflegung</b>Halbpension</div>
+    <div><b>Strand</b>700 m, Bimmelbahn; Liegen ab 3. Reihe inklusive</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Traumstrände, Lagune, Natur</li><li>Kinder bis 5 kostenlos</li><li>Ruhiger als Forte Village</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Keine Rutschen, Betreuung erst ab 3</li><li>Strand nur per Bimmelbahn</li><li>Zwei Zimmer nötig</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Chia Laguna">
+    <figure><img src="images/chia-b.jpg" alt="Strand und Lagune von Chia" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Strand und Lagune von Chia</figcaption></figure>
+    <figure><img src="images/chia-a.jpg" alt="Pool im Hotel Village" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pool im Hotel Village</figcaption></figure>
+    <figure><img src="images/chia-d.jpg" alt="Dünenstrand, Liegen ab 3. Reihe inklusive" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Dünenstrand, Liegen ab 3. Reihe inklusive</figcaption></figure>
+    <figure><img src="images/chia-02.jpg" alt="Bootstour entlang der Küste" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Bootstour entlang der Küste</figcaption></figure>
+    <figure><img src="images/chia-03.jpg" alt="Am Strand" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Am Strand</figcaption></figure>
+    <figure><img src="images/chia-06.jpg" alt="Reiten an der Küste" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Reiten an der Küste</figcaption></figure>
+    <figure><img src="images/chia-11.jpg" alt="Lagune mit Flamingos" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Lagune mit Flamingos</figcaption></figure>
+    <figure><img src="images/chia-f.jpg" alt="Kinderbereich am Abend" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Kinderbereich am Abend</figcaption></figure>
+    <figure><img src="images/chia-e.jpg" alt="Family Superior" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Family Superior</figcaption></figure>
+    <figure><img src="images/chia-c.jpg" alt="Abendprogramm im Resort" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Abendprogramm im Resort</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Chia Laguna Resort / British Airways Holidays</p>
+</section>
+
+<section id="tortuga">
+  <div class="resort-head">
+    <span class="eyebrow">Option 4 · Norden · die Auto-Variante</span>
+    <h2>Camping Village Baia Blu La Tortuga</h2>
+    <div class="where">Aglientu, Gallura · Mobilheime im Pinienwald direkt am Strand · Selbstversorgung</div>
+  </div>
+  <p>Wenn das Auto mitfährt, ist das die Fortsetzung von Prà delle Torri auf Sardinisch: 17 Hektar Pinienwald direkt an einem 600 Meter langen Sandstrand an der Nordküste, Poollandschaft mit Rutschen, Kinder-Splashpool und Whirlpools, Restaurant und Markt am Platz. Das Mobilheim Baia Elite hat 31–35 m² und drei Schlafzimmer, also ein eigenes für jedes Kinderpaar. Von der Fähre in Olbia sind es 80 Kilometer.</p>
+  <p>Die Einschränkungen gegenüber Italien: Der Miniclub nimmt erst ab 5 Jahren und läuft erst ab Mitte Juni, im Pool gilt Badehaubenpflicht, Verpflegung ist Selbstversorgung oder Restaurant. Dafür kostet es einen Bruchteil, und mit dem eigenen Auto ist man frei für Ausflüge: La Maddalena-Archipel per Boot, Capo Testa, Castelsardo.</p>
+  <div class="keyfacts">
+    <div><b>Flug</b>Olbia (OLB) · 80 km, ~1 h 15 · dann Mietwagen Pflicht</div>
+    <div><b>Mit Auto</b>Olbia-Fähre → 1 h 15</div>
+    <div><b>Wasser</b>Poollandschaft mit Rutschen, Kinder-Splashpool, Whirlpools (24.5.–14.9.)</div>
+    <div><b>Kinder</b>Miniclub ab 5 J., 14.6.–31.8., kostenpflichtig; Spielplatz</div>
+    <div><b>Verpflegung</b>Selbstversorgung, Restaurant/Pizzeria, Markt</div>
+    <div><b>Preis</b>Mobilheim 2 Wochen Juni grob 2–3,5 k€, Frühbucher 5 % bis 31.12.</div>
+  </div>
+  <div class="two">
+    <div class="pro"><h3>Dafür spricht</h3><ul><li>Vertrautes Camping-Village-Format, Mobilheim mit 3 Schlafzimmern</li><li>Rutschen und Splashpool, Strand direkt vor der Tür</li><li>Mit Abstand günstigste Option</li><li>Auto dabei: Ausflüge nach La Maddalena, Capo Testa</li></ul></div>
+    <div class="con"><h3>Dagegen spricht</h3><ul><li>Keine Betreuung für die Kleinen, Club erst ab 5 und erst ab Mitte Juni</li><li>Selbst kochen oder Restaurant, kein Dine-around</li><li>Badehaubenpflicht im Pool</li></ul></div>
+  </div>
+  <div class="gallery" data-resort="Baia Blu La Tortuga">
+    <figure><img src="images/tortuga-04.jpg" alt="Kinder-Splashpool mit Rutschen" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Kinder-Splashpool mit Rutschen</figcaption></figure>
+    <figure><img src="images/tortuga-01.jpg" alt="Der Strand direkt am Platz" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Der Strand direkt am Platz</figcaption></figure>
+    <figure><img src="images/tortuga-02.jpg" alt="Pinienwald und Strand von oben" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Pinienwald und Strand von oben</figcaption></figure>
+    <figure><img src="images/tortuga-13.jpg" alt="Mobilheim Baia Elite" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Mobilheim Baia Elite</figcaption></figure>
+    <figure><img src="images/tortuga-07.jpg" alt="Veranda eines Mobilheims" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Veranda eines Mobilheims</figcaption></figure>
+    <figure><img src="images/tortuga-08.jpg" alt="Mobilheim Relax New" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Mobilheim Relax New</figcaption></figure>
+    <figure><img src="images/tortuga-10.jpg" alt="Chalet im Pinienwald" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Chalet im Pinienwald</figcaption></figure>
+    <figure><img src="images/tortuga-05.jpg" alt="Restaurant am Platz" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Restaurant am Platz</figcaption></figure>
+    <figure><img src="images/tortuga-06.jpg" alt="Animation" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Animation</figcaption></figure>
+    <figure><img src="images/tortuga-03.jpg" alt="Die Fähre nach Sardinien" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>Die Fähre nach Sardinien</figcaption></figure>
+  </div>
+  <p class="credit">Fotos: Baia Holiday</p>
+</section>
+
+<section id="fazit">
+  <span class="eyebrow">Einordnung</span>
+  <h2>Fazit</h2>
+  <div class="verdict">
+    <ol>
+      <li><b>Forte Village (Bouganville)</b> ist die eine Anlage in allen drei Vergleichen, die Luxus, Rutschen <i>und</i> Betreuung ab 2 Jahren verbindet. Wenn das Budget wie bei Sani/Ikos sein darf, ist das die vollständigste Antwort auf eure Liste. Bei zwei Wochen mit Auto und Fähre anreisen, bei einer Woche nach Cagliari fliegen.</li>
+      <li><b>Tirreno Resort</b> ist der pragmatische Favorit: eine Stunde von Olbia, All-inclusive, Rutsche und Piratenschiff, halber Preis. Für eine Woche mit Flug ab Salzburg die einfachste Lösung.</li>
+      <li><b>Baia Blu La Tortuga</b> ist die Camping-Variante mit eigenem Auto und Nachtfähre: günstig, Rutschen, Strand, drei Schlafzimmer – aber ohne Betreuung für die beiden Kleinen.</li>
+      <li><b>Chia Laguna</b> hat die schönste Landschaft, aber weder Rutschen noch ein Zimmer für fünf; eher etwas für ein paar Jahre später.</li>
+    </ol>
+  </div>
+  <p class="note" style="margin-top:18px">Im Vergleich zu Griechenland: Sardinien ist näher, mit Auto erreichbar und im Juni nicht so heiß. Was fehlt, ist die Resort-Küche von Ikos und der riesige Wasserpark des Grecotel Oasis; Forte Village kommt beidem am nächsten.</p>
+  <h3 style="margin-top:28px">Quellen</h3>
+  <ul class="sources">
+    <li><a href="https://tinytravelship.com/destinations/forte-village/">Forte Village – Tiny Travelship</a>, familienreisefieber.de, urlaubsguide.de</li>
+    <li><a href="https://www.dertour.de/hotel/sentido-tirreno-resort-1142Ri">Sentido Tirreno Resort – DERTOUR</a>, familienreisefieber.de</li>
+    <li><a href="https://www.britishairways.com/en-gb/destinations/hotel-information/Pula/Chia-Laguna-Hotel-Village/IT-CAG-7092391">Chia Laguna Hotel Village – BA Holidays</a></li>
+    <li><a href="https://www.dertour.de/hotel/camping-village-baia-blu-la-tortuga-113Npy">Baia Blu La Tortuga – DERTOUR</a></li>
+    <li>Flüge: <a href="https://www.eurowings.com/at/buchen/angebote/fluege-ab/IT/OLB/nach/AT/SZG.html">Eurowings Salzburg–Olbia</a>, Salzburg24 Sommerflugplan 2026</li>
+    <li>Fähren: <a href="https://www.directferries.de/livorno_olbia_faehre.htm">Direct Ferries Livorno–Olbia</a>, PiNCAMP Genua–Olbia</li>
+  </ul>
+</section>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Foto in groß">
+  <button type="button" id="lbClose" aria-label="Schließen">×</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</dialog>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  if(!lb||!lb.showModal) return;
+  document.querySelectorAll('.gallery figure').forEach(function(f){
+    f.addEventListener('click',function(){
+      var i=f.querySelector('img'),c=f.querySelector('figcaption');
+      img.src=i.currentSrc||i.src; img.alt=i.alt;
+      cap.textContent=(f.closest('.gallery').dataset.resort||'')+' · '+(c?c.textContent:'');
+      lb.showModal();
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){ if(e.target===lb) lb.close(); });
+})();
+</script>
+
+</body>
+</html>
