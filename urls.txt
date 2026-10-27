@@ -75,3 +75,11 @@ forte-619.jpg https://www.britishairways.com/badp/static/external/IT-K14-0000236
 forte-1320.jpg https://www.britishairways.com/badp/static/external/IT-K14-0000236/1320_IT-K14-0000236-M2619.jpeg
 forte-1221.jpg https://www.britishairways.com/badp/static/external/IT-K14-0000236/1221_IT-K14-0000236-M2601.jpeg
 forte-2022.jpg https://www.britishairways.com/badp/static/external/IT-K14-0000236/2022_IT-K14-0000236-M2610.jpeg
+tirreno-g.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_r_001.jpg
+tirreno-h.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_s_002.jpg
+tirreno-i.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_f_002.jpg
+tirreno-j.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_p_002.jpg
+tirreno-k.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_p_001.jpg
+tirreno-l.jpg https://photos.hotelbeds.com/giata/bigger/08/084466/084466a_hb_w_001.jpg
+tirreno-m.jpg https://static.charmingsardinia.com/hotels/1826/room_10534/files/family1.jpg
+tirreno-n.jpg https://static.charmingsardinia.com/hotels/1826/room_10534/files/family2.jpg
